@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react';
+import { Route, Switch, Redirect} from 'react-router-dom';
+import userService from '../../utils/userService';
+import tokenService from '../../utils/tokenService';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/*------ Pages ------*/
+
+
+class App extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <p>
+            HELLO WORLD!
+          </p>
+        </header>
+      </div>
+    );
+  }
 }
 
 export default App;
