@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./LoginPage.css";
 import userService from "../../utils/userService";
+import SignupForm from "../../components/SingupForm/SignupForm";
 
 class LoginPage extends Component {
-  state = {
-    username: "",
-    pw: "",
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: "",
+      username: "",
+      pw: "",
+    };
+  }
+
+  updateMessage = (msg) => {
+    this.setState({ message: msg });
   };
 
   handleChange = (e) => {
@@ -17,6 +26,7 @@ class LoginPage extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(`What is this? ${this.state}`);
     try {
       await userService.login(this.state);
       // Let <App> know a user has signed up!
@@ -25,7 +35,7 @@ class LoginPage extends Component {
       this.props.history.push("/");
     } catch (err) {
       // Invalid user data (probably duplicate email)
-      alert("Invalid Credentials!");
+      console.log(`Error: ${err}`);
     }
   };
 
@@ -64,6 +74,10 @@ class LoginPage extends Component {
             </div>
           </div>
         </form>
+        <div>
+          <SignupForm {...this.props} updateMessage={this.updateMessage} />
+          <p>{this.state.message}</p>
+        </div>
       </div>
     );
   }
