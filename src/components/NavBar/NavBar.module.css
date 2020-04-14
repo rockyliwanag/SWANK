@@ -1,0 +1,16 @@
+.NavBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 200px;
+    border: 2px solid red;
+}
+
+.logout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: grey;
+    border: 2px solid yellow;
+}
