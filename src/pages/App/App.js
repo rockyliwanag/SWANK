@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect} from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import userService from "../../utils/userService";
 import tokenService from "../../utils/tokenService";
 import "./App.css";
@@ -26,11 +26,16 @@ class App extends Component {
     });
   };
 
+  handleLogout = () => {
+    userService.logout();
+    this.setState({ user: null });
+  };
+
   render() {
     console.log(this.state.user);
     return (
       <div className="App">
-        <Header user={this.state.user}/>
+        <Header user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
           <Route
             exact
@@ -42,7 +47,7 @@ class App extends Component {
               />
             )}
           />
-        </Switch>{" "}
+        </Switch>
       </div>
     );
   }
