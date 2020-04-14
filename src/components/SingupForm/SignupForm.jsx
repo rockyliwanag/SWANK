@@ -10,6 +10,8 @@ class SignupForm extends Component {
     email: "",
     password: "",
     passwordConf: "",
+    state: "",
+    country: "",
   };
 
   handleChange = (e) => {
@@ -39,16 +41,21 @@ class SignupForm extends Component {
       this.state.last_name &&
       this.state.username &&
       this.state.email &&
-      this.state.password === this.state.passwordConf
+      this.state.password === this.state.passwordConf &&
+      this.state.state &&
+      this.state.country
     );
   }
 
   render() {
     return (
       <div>
-        <header className="header-footer"> Sign Up</header>
+        <header className="header-footer">
+          <h2>SIGN UP</h2>
+        </header>
         <form className="form-horizontal" onSubmit={this.handleSubmit}>
           <div>
+            <label>FIRST NAME</label>
             <div>
               <input
                 type="text"
@@ -61,6 +68,7 @@ class SignupForm extends Component {
             </div>
           </div>
           <div>
+            <label>LAST NAME</label>
             <div>
               <input
                 type="text"
@@ -73,11 +81,12 @@ class SignupForm extends Component {
             </div>
           </div>
           <div>
+            <label>USERNAME</label>
             <div>
               <input
                 type="text"
                 className="form-control"
-                placeholder="Username"
+                placeholder="Username*"
                 value={this.state.username}
                 name="username"
                 onChange={this.handleChange}
@@ -85,11 +94,12 @@ class SignupForm extends Component {
             </div>
           </div>
           <div>
+            <label>E-MAIL ADDRESS</label>
             <div>
               <input
                 type="email"
                 className="form-control"
-                placeholder="E-mail"
+                placeholder="E-mail*"
                 value={this.state.email}
                 name="email"
                 onChange={this.handleChange}
@@ -97,11 +107,12 @@ class SignupForm extends Component {
             </div>
           </div>
           <div>
+            <label>PASSWORD</label>
             <div>
               <input
                 type="password"
                 className="form-control"
-                placeholder="Password"
+                placeholder="Password*"
                 value={this.state.password}
                 name="password"
                 onChange={this.handleChange}
@@ -109,13 +120,40 @@ class SignupForm extends Component {
             </div>
           </div>
           <div>
+            <label>CONFIRM PASSWORD</label>
             <div>
               <input
                 type="password"
                 className="form-control"
-                placeholder="Confirm Password"
+                placeholder="Confirm Password*"
                 value={this.state.passwordConf}
                 name="passwordConf"
+                onChange={this.handleChange}
+              />
+            </div>
+          </div>
+          <div>
+            <label>STATE</label>
+            <div>
+              <input
+                type="state"
+                className="form-control"
+                placeholder="State*"
+                value={this.state.city}
+                name="state"
+                onChange={this.handleChange}
+              />
+            </div>
+          </div>
+          <div>
+            <label>COUNTRY</label>
+            <div>
+              <input
+                type="country"
+                className="form-control"
+                placeholder="Country*"
+                value={this.state.country}
+                name="country"
                 onChange={this.handleChange}
               />
             </div>

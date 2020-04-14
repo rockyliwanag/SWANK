@@ -3,35 +3,38 @@ var Schema = mongoose.Schema;
 var bcrypt = require("bcrypt");
 var SALT_ROUNDS = 6;
 
-var userSchema = new mongoose.Schema(
-  {
-    first_name: String,
-    last_name: String,
-    username: {
-      type: String,
-      unique: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      lowercase: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-    },
-    city: String,
-    zipcode: {
-      type: Number,
-      min: 5,
-      max: 5,
-    },
+var userSchema = new mongoose.Schema({
+  first_name: String,
+  last_name: String,
+  username: {
+    type: String,
+    required: true,
+    unique: true,
   },
-  {
-    timestamps: true,
+  email: {
+    type: String,
+    required: true,
+    lowercase: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  state: {
+    type: String,
+    required: true,
+    minlength: 2,
+    maxlength: 2,
+    uppercase: true
+  },
+  country: {
+    type: String,
+    required: true
   }
-);
+}, {
+  timestamps: true,
+});
 
 userSchema.set("toJSON", {
   transform: function (doc, ret) {
