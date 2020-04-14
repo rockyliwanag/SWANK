@@ -7,18 +7,20 @@ class NavBar extends Component {
         return (
             <div className={styles.NavBar}>
                 {this.props.user ?
-                    <div className={styles.logout}>
-                    <Link to='/'>HOME</Link>
-                    <Link to='/inventory'>INVENTORY</Link>
-                    <Link>LOGOUT</Link>
-                        <div>
-                            <h4>Welcome, {this.props.user.username}!</h4>
+                    <div className={styles.linkWrapper}>
+                        <div className={styles.logout}>
+                            <Link to='/' className={styles.NavBarLink}>HOME</Link> |
+                            <Link to='/inventory' className={styles.NavBarLink}>INVENTORY</Link> |
+                            <Link to='' className={styles.NavBarLink}>LOGOUT</Link>
+                        </div>
+                        <div className={styles.Welcome}>
+                            Welcome, {this.props.user.first_name}!
                         </div>
                     </div>
                         :
                     <div>
-                        <Link to='/'>HOME</Link>
-                        <Link to='/login'>LOGIN</Link>
+                        <Link to='/' className={styles.NavBarLink}>HOME</Link> |
+                        <Link to='/login' className={styles.NavBarLink}>LOGIN</Link>
                         <hr/>
                     </div>
                      }

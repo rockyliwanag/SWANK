@@ -1,0 +1,9 @@
+.Header-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid rgb(34, 34, 34);
+}
+
+.Logo {
+    margin: 2rem 6rem;
+}

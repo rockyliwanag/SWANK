@@ -5,8 +5,10 @@ import "./Header.css";
 
 const Header = (props) => {
   return (
-    <div>
-      <h1>LOGO</h1>
+    <div className="Header-container">
+      <div className="Logo">
+        <h1>SWANK</h1>
+      </div>
       <NavBar
         user={props.user}
         handleLogout={props.handleLogout} 
