@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import userService from "../../utils/userService";
+import itemService from "../../utils/itemService";
 import tokenService from "../../utils/tokenService";
 import "./App.css";
 
@@ -8,7 +9,7 @@ import "./App.css";
 import Header from "../../components/Header/Header";
 
 /*------ API ------*/
-import * as itemAPI from "../../services/items-api";
+// import * as itemAPI from "../../services/items-api";
 
 /*------ Pages ------*/
 // import SignupPage from '../SignupPage/SignupPage';
@@ -41,7 +42,7 @@ class App extends Component {
   };
 
   handleAddItem = async (newItemData) => {
-    const newItem = await itemAPI.create(newItemData);
+    const newItem = await itemService.create(newItemData);
     this.setState(
       (state) => ({
         items: [...state.items, newItem],
@@ -52,13 +53,12 @@ class App extends Component {
 
   /*------ Lifecycle Methods ------*/
 
-  async componentDidMount() {
-    const items = await itemAPI.getAll();
-    this.setState({ items });
-  }
+  // async componentDidMount() {
+  //   const items = await itemService.getAll();
+  //   this.setState({ items });
+  // }
 
   render() {
-    console.log(this.state.user);
     return (
       <div className="App">
         <Header user={this.state.user} handleLogout={this.handleLogout} />
@@ -86,8 +86,12 @@ class App extends Component {
           <Route
             exact
             path="/new-item"
-            render={({ history }) => <AddItemsPage history={history}
-            handleAddItem={this.handleAddItem} />}
+            render={({ history }) => (
+              <AddItemsPage
+                history={history}
+                handleAddItem={this.handleAddItem}
+              />
+            )}
           />
         </Switch>
       </div>
