@@ -6,17 +6,16 @@ var itemSchema = new Schema({
     type: String,
     required: true,
   },
+  value: {
+    type: Number,
+    required: true,
+  },
   itemType: {
     type: String,
     // required: true,
-    unique: true,
   },
   description: {
     type: String,
-    required: true,
-  },
-  value: {
-    type: Number,
     required: true,
   },
 });

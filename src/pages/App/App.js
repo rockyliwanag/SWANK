@@ -1,15 +1,17 @@
-import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import React, {
+  Component
+} from "react";
+import {
+  Route,
+  Switch
+} from "react-router-dom";
 import userService from "../../utils/userService";
 import itemService from "../../utils/itemService";
-import tokenService from "../../utils/tokenService";
+// import tokenService from "../../utils/tokenService";
 import "./App.css";
 
 /*------ Components ------*/
 import Header from "../../components/Header/Header";
-
-/*------ API ------*/
-// import * as itemAPI from "../../services/items-api";
 
 /*------ Pages ------*/
 // import SignupPage from '../SignupPage/SignupPage';
@@ -42,6 +44,7 @@ class App extends Component {
   };
 
   handleAddItem = async (newItemData) => {
+    console.log(`NEW ITEM DATA: ${newItemData}`);
     const newItem = await itemService.create(newItemData);
     this.setState(
       (state) => ({
@@ -51,6 +54,11 @@ class App extends Component {
     );
   };
 
+  // handleAddItem = async (newItem) => {
+  //   await itemService.create(newItem);
+  //   this.props.history.push("/inventory");
+  // };
+
   /*------ Lifecycle Methods ------*/
 
   // async componentDidMount() {
@@ -59,44 +67,74 @@ class App extends Component {
   // }
 
   render() {
-    return (
-      <div className="App">
-        <Header user={this.state.user} handleLogout={this.handleLogout} />
-        <Switch>
-          <Route
+      return ( <
+        div className = "App" >
+        <
+        Header user = {
+          this.state.user
+        }
+        handleLogout = {
+          this.handleLogout
+        }
+        /> <
+        Switch >
+        <
+        Route exact path = "/login"
+        render = {
+          ({
+            history
+          }) => ( <
+            LoginPage history = {
+              history
+            }
+            handleSignupOrLogin = {
+              this.handleSignupOrLogin
+            }
+            />
+          )
+        }
+        /> <
+        Route exact path = "/"
+        render = {
+          ({
+            history
+          }) => < HomePage history = {
+            history
+          }
+          />} / >
+          <
+          Route
+          exact
+          path = "/inventory"
+          render = {
+            ({
+              history
+            }) => < InventoryPage history = {
+              history
+            }
+            />} / >
+            <
+            Route
             exact
-            path="/login"
-            render={({ history }) => (
-              <LoginPage
-                history={history}
-                handleSignupOrLogin={this.handleSignupOrLogin}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/"
-            render={({ history }) => <HomePage history={history} />}
-          />
-          <Route
-            exact
-            path="/inventory"
-            render={({ history }) => <InventoryPage history={history} />}
-          />
-          <Route
-            exact
-            path="/new-item"
-            render={({ history }) => (
-              <AddItemsPage
-                history={history}
-                handleAddItem={this.handleAddItem}
-              />
-            )}
-          />
-        </Switch>
-      </div>
-    );
-  }
-}
+            path = "/new-item"
+            render = {
+              ({
+                history
+              }) => ( <
+                AddItemsPage history = {
+                  history
+                }
+                handleAddItem = {
+                  this.handleAddItem
+                }
+                />
+              )
+            }
+            /> < /
+            Switch > <
+            /div>
+          );
+        }
+      }
 
-export default App;
+      export default App;

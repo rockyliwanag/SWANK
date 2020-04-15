@@ -18,9 +18,9 @@ class AddItemsPage extends Component {
     invalidForm: true,
     formData: {
       name: "",
+      value: "",
       itemType: null,
       description: "",
-      value: "",
       pictures: [],
     },
   };
@@ -42,14 +42,19 @@ class AddItemsPage extends Component {
       [e.target.name]: e.target.value,
     };
     this.setState({
-      formData,
+      formData: formData,
       invalidForm: !this.formRef.current.checkValidity(),
     });
   };
 
   handleSelection = (itemType) => {
-    this.setState({ itemType }, () =>
-      console.log(`Option selected:`, this.state.formData.itemType)
+      const formData = {
+      ...this.state.formData,
+      itemType: itemType.value
+    };
+    this.setState({ formData: formData
+     }, () =>
+      console.log(`Option selected:`, this.state.itemType)
     );
   };
 
@@ -76,6 +81,21 @@ class AddItemsPage extends Component {
               />
             </div>
             <div className="form-group">
+              <label>VALUE (required)</label>
+              <div className="input-group">
+                <span className="input-group-addon">$</span>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="value"
+                  value={this.state.formData.value}
+                  onChange={this.handleChange}
+                  aria-label="VALUE"
+                  required
+                />
+                <span className="input-group-addon">.00</span>
+              </div>
+              <div className="form-group">
               <label>ITEM TYPE (required)</label>
               <Select
                 // className="form-control"
@@ -85,6 +105,7 @@ class AddItemsPage extends Component {
                 options={options}
                 required
               />
+              </div>
               <div className="form-group">
                 <label>DESCRIPTON (required)</label>
                 <textarea
@@ -95,22 +116,6 @@ class AddItemsPage extends Component {
                   placeholder="DESCRIPTION"
                   required
                 />
-              </div>
-              <div className="form-group">
-                <label>VALUE (required)</label>
-                <div className="input-group">
-                  <span className="input-group-addon">$</span>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="value"
-                    value={this.state.formData.value}
-                    onChange={this.handleChange}
-                    aria-label="VALUE"
-                    required
-                  />
-                  <span className="input-group-addon">.00</span>
-                </div>
               </div>
             </div>
             <input type="file" onChange={this.fileUploaded} />
