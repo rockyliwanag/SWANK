@@ -36,6 +36,8 @@ class AddItemsPage extends Component {
     this.props.handleAddItem(this.state.formData);
   };
 
+
+  
   handleChange = (e) => {
     const formData = {
       ...this.state.formData,
@@ -52,7 +54,7 @@ class AddItemsPage extends Component {
       ...this.state.formData,
       itemType: itemType.value
     };
-    this.setState({ formData: formData
+    this.setState({ itemType: itemType
      }, () =>
       console.log(`Option selected:`, this.state.itemType)
     );
