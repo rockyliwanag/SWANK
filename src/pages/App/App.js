@@ -7,9 +7,12 @@ import "./App.css";
 /*------ Components ------*/
 import Header from "../../components/Header/Header";
 
+/*------ API ------*/
+import * as itemAPI from "../../services/items-api";
+
 /*------ Pages ------*/
 // import SignupPage from '../SignupPage/SignupPage';
-import HomePage from "../HomePage/HomePage"
+import HomePage from "../HomePage/HomePage";
 import LoginPage from "../LoginPage/LoginPage";
 import InventoryPage from "../InventoryPage/InventoryPage";
 import AddItemsPage from "../AddItemsPage/AddItemsPage";
@@ -18,6 +21,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      items: [],
       user: userService.getUser(),
     };
   }
@@ -31,8 +35,27 @@ class App extends Component {
 
   handleLogout = () => {
     userService.logout();
-    this.setState({ user: null });
+    this.setState({
+      user: null,
+    });
   };
+
+  handleAddItem = async (newItemData) => {
+    const newItem = await itemAPI.create(newItemData);
+    this.setState(
+      (state) => ({
+        items: [...state.items, newItem],
+      }),
+      () => this.props.history.push("/inventory")
+    );
+  };
+
+  /*------ Lifecycle Methods ------*/
+
+  async componentDidMount() {
+    const items = await itemAPI.getAll();
+    this.setState({ items });
+  }
 
   render() {
     console.log(this.state.user);
@@ -53,29 +76,18 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={({ history }) => (
-              <HomePage
-                history={history}
-              />
-            )}
+            render={({ history }) => <HomePage history={history} />}
           />
           <Route
             exact
             path="/inventory"
-            render={({ history }) => (
-              <InventoryPage
-                history={history}
-              />
-            )}
+            render={({ history }) => <InventoryPage history={history} />}
           />
           <Route
             exact
             path="/new-item"
-            render={({ history }) => (
-              <AddItemsPage
-                history={history}
-              />
-            )}
+            render={({ history }) => <AddItemsPage history={history}
+            handleAddItem={this.handleAddItem} />}
           />
         </Switch>
       </div>

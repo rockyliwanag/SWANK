@@ -6,7 +6,7 @@ var itemSchema = new Schema({
         type: String,
         required: true
     },
-    item_type: {
+    itemType: {
         type: String,
         required: true,
         unique: true
@@ -18,7 +18,7 @@ var itemSchema = new Schema({
     value: {
         type: Number,
         required: true,
-    },
+    }
 });
 
 module.exports = mongoose.model('Item', itemSchema);

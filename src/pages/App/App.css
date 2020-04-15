@@ -28,3 +28,8 @@
 .App-body {
   min-height: 90vh;
 }
+
+.Page-container {
+  width: 60%;
+  margin: 0 auto;
+}
