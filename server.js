@@ -10,6 +10,7 @@ require("./config/database");
 
 // Routes:
 var usersRouter = require("./routes/api/users");
+var itemsRouter = require("./routes/api/items");
 
 // Middlewares
 app.use(logger("dev"));
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, "build")));
 
 // Put API routes here, before "catch all" route
 app.use("/api/users", usersRouter);
+app.use("/api/items", itemsRouter);
 
 app.get("/*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
