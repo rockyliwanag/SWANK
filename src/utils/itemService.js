@@ -4,7 +4,8 @@ const BASE_URL = "/api/items/";
 
 export default {
   create,
-  // getAll,
+  getAll,
+  delete: deleteOne,
 };
 
 // function create(item) {
@@ -19,21 +20,25 @@ export default {
 //   };
 //   return fetch(BASE_URL, options).then(res => res.json());
 // }
+function getAll() {
+  return fetch(BASE_URL).then((res) => res.json());
+}
 
 function create(item) {
-  console.log(item);
   return fetch(BASE_URL, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: "Bearer " + tokenService.getToken(),
-      },
-      body: JSON.stringify(item),
-    })
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+      Authorization: "Bearer " + tokenService.getToken(),
+    },
+    body: JSON.stringify(item),
+  })
     .then((res) => res.json())
     .then((item) => console.log(`THIS ${item}`));
 }
 
-// export function getAll() {
-//   return fetch(BASE_URL).then((res) => res.json());
-// }
+function deleteOne(id) {
+  return fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  }).then((res) => res.json());
+}

@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+var uniqueValidator = require('mongoose-unique-validator');
 var bcrypt = require("bcrypt");
 var SALT_ROUNDS = 6;
 
@@ -9,7 +10,7 @@ var userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true,
+    unique: true
   },
   email: {
     type: String,
@@ -35,6 +36,8 @@ var userSchema = new mongoose.Schema({
 }, {
   timestamps: true,
 });
+
+userSchema.plugin(uniqueValidator);
 
 userSchema.set("toJSON", {
   transform: function (doc, ret) {

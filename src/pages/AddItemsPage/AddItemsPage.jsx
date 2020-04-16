@@ -19,7 +19,7 @@ class AddItemsPage extends Component {
     formData: {
       name: "",
       value: "",
-      itemType: null,
+      itemType: "",
       description: "",
       pictures: [],
     },
@@ -36,8 +36,6 @@ class AddItemsPage extends Component {
     this.props.handleAddItem(this.state.formData);
   };
 
-
-  
   handleChange = (e) => {
     const formData = {
       ...this.state.formData,
@@ -50,12 +48,11 @@ class AddItemsPage extends Component {
   };
 
   handleSelection = (itemType) => {
-      const formData = {
+    const formData = {
       ...this.state.formData,
-      itemType: itemType.value
+      itemType: itemType.value,
     };
-    this.setState({ itemType: itemType
-     }, () =>
+    this.setState({ itemType: itemType, formData: formData }, () =>
       console.log(`Option selected:`, this.state.itemType)
     );
   };
@@ -98,15 +95,20 @@ class AddItemsPage extends Component {
                 <span className="input-group-addon">.00</span>
               </div>
               <div className="form-group">
-              <label>ITEM TYPE (required)</label>
-              <Select
-                // className="form-control"
-                name="itemType"
-                value={itemType}
-                onChange={this.handleSelection}
-                options={options}
-                required
-              />
+                <label>ITEM TYPE (required)</label>
+                <Select
+                  // className="form-control"
+                  name="itemType"
+                  value={itemType}
+                  onChange={this.handleSelection}
+                  placeholder={
+                    this.state.itemType
+                      ? this.state.itemType.label
+                      : "select an item"
+                  }
+                  options={options}
+                  required
+                />
               </div>
               <div className="form-group">
                 <label>DESCRIPTON (required)</label>
