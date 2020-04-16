@@ -1,19 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./ItemList.css";
 
 function ItemList(props, handleDeleteItem) {
-  console.log(props);
   return (
     <div>
       <div>
         <h3>{props.item.name}</h3>
       </div>
-      <div>
+      <div className="ItemListPanel">
         <Link to="#">DETAILS</Link>
         <Link to="#">EDIT</Link>
         <button
           className="btn btn-xs btn-danger margin-left-10"
-          onClick={() => handleDeleteItem(props.item._id)}
+          onClick={() => props.handleDeleteItem(props.item._id)}
         >
           DELETE
         </button>

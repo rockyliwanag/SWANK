@@ -27,9 +27,9 @@ class AddItemsPage extends Component {
 
   formRef = React.createRef();
 
-  // fileUploaded = (e) => {
-  //   console.log(e.target);
-  // }
+  fileUploaded = (e) => {
+    console.log(e.target);
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();

@@ -26,18 +26,19 @@ function getAll() {
 
 function create(item) {
   return fetch(BASE_URL, {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-      Authorization: "Bearer " + tokenService.getToken(),
-    },
-    body: JSON.stringify(item),
-  })
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: "Bearer " + tokenService.getToken(),
+      },
+      body: JSON.stringify(item),
+    })
     .then((res) => res.json())
     .then((item) => console.log(`THIS ${item}`));
 }
 
 function deleteOne(id) {
+  console.log(`${BASE_URL}/${id}`);
   return fetch(`${BASE_URL}/${id}`, {
     method: "DELETE",
   }).then((res) => res.json());

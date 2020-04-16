@@ -18,6 +18,6 @@ async function index(req, res) {
 }
 
 async function deleteOne(req, res) {
-  const deletedItem = await Item.findByIdAndRemove(req.params.id);
-  res.status(200).json(deletedItem);
+    const deletedItem = await Item.findByIdAndRemove(req.params.id);
+    res.status(200).json(deletedItem);
 }

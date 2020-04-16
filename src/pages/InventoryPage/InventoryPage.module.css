@@ -1,0 +1,12 @@
+.InventoryListGrid {
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minimax(170px, 1fr));
+  grid-gap: 20px;
+  border: 3px solid black;
+}
+
+.grid {
+
+  border: 2px solid red;
+}
