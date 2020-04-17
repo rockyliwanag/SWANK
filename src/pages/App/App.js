@@ -13,6 +13,7 @@ import Header from "../../components/Header/Header";
 import HomePage from "../HomePage/HomePage";
 import LoginPage from "../LoginPage/LoginPage";
 import InventoryPage from "../InventoryPage/InventoryPage";
+import ItemDetailPage from "../ItemDetailPage/ItemDetailPage";
 import AddItemsPage from "../AddItemsPage/AddItemsPage";
 import EditItemPage from "../EditItemPage/EditItemPage";
 
@@ -93,7 +94,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header user={this.state.user} handleLogout={this.handleLogout} />{" "}
+        <Header user={this.state.user} handleLogout={this.handleLogout} />
         <Switch>
           <Route
             exact
@@ -104,7 +105,7 @@ class App extends Component {
                 handleSignupOrLogin={this.handleSignupOrLogin}
               />
             )}
-          />{" "}
+          />
           <Route
             exact
             path="/"
@@ -119,7 +120,7 @@ class App extends Component {
                 handleDeleteItem={this.handleDeleteItem}
               />
             )}
-          />{" "}
+          />
           <Route
             exact
             path="/new-item"
@@ -134,8 +135,13 @@ class App extends Component {
                 handleUpdateItem={this.handleUpdateItem}
               />
             )}
-          />{" "}
-        </Switch>{" "}
+          />
+          <Route
+            exact
+            path="/details"
+            render={({ location }) => <ItemDetailPage location={location} />}
+          />
+        </Switch>
       </div>
     );
   }

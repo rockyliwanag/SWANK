@@ -9,7 +9,14 @@ function ItemList(props, handleDeleteItem) {
         <h3>{props.item ? props.item.name : ""}</h3>
       </div>
       <div className="ItemListPanel">
-        <Link to="#">DETAILS</Link>
+        <Link
+          to={{
+            pathname: "/details",
+            state: { item: props.item },
+          }}
+        >
+          DETAILS
+        </Link>
         <Link
           className="btn btn-xs btn-info"
           to={{
