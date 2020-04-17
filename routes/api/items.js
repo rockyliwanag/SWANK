@@ -6,5 +6,7 @@ var itemsCtrl = require("../../controllers/items");
 router.post("/", itemsCtrl.create);
 router.get("/", itemsCtrl.index);
 router.delete("/:id", itemsCtrl.delete);
+router.put("/:id", itemsCtrl.update);
+router.get("/:id", itemsCtrl.show);
 
 module.exports = router;

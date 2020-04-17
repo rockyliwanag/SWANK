@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-var uniqueValidator = require('mongoose-unique-validator');
+var uniqueValidator = require("mongoose-unique-validator");
 var bcrypt = require("bcrypt");
 var SALT_ROUNDS = 6;
 
@@ -10,7 +10,7 @@ var userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   email: {
     type: String,
@@ -20,19 +20,23 @@ var userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   state: {
     type: String,
     required: true,
     minlength: 2,
     maxlength: 2,
-    uppercase: true
+    uppercase: true,
   },
   country: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
+  items: [{
+    type: Schema.Types.ObjectId,
+    ref: "Item",
+  }, ],
 }, {
   timestamps: true,
 });
