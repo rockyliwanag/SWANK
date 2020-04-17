@@ -22,8 +22,8 @@ export default {
 //   };
 //   return fetch(BASE_URL, options).then(res => res.json());
 // }
-function getAll() {
-  return fetch(BASE_URL).then((res) => res.json());
+async function getAll(user) {
+  return await fetch(BASE_URL + `/${user._id}`).then((res) => res.json());
 }
 
 function create(item, userId) {

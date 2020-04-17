@@ -84,11 +84,17 @@ class App extends Component {
   /*------ Lifecycle Methods ------*/
 
   async componentDidMount() {
-    const items = await itemService.getAll();
+    const items = await itemService.getAll(this.state.user);
+    console.log("ITEMS!", items);
     // const items = await res.json();
-    this.setState({
-      items: items,
-    });
+    await this.setState(
+      {
+        items: items,
+      },
+      function () {
+        console.log("DONE!");
+      }
+    );
   }
 
   render() {
@@ -114,8 +120,9 @@ class App extends Component {
           <Route
             exact
             path="/inventory"
-            render={() => (
+            render={({ history }) => (
               <InventoryPage
+                history={history}
                 items={this.state.items}
                 handleDeleteItem={this.handleDeleteItem}
               />

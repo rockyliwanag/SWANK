@@ -4,7 +4,7 @@ var itemsCtrl = require("../../controllers/items");
 
 /* GET /api/items */
 router.post("/", itemsCtrl.create);
-router.get("/", itemsCtrl.index);
+router.get("/:userId", itemsCtrl.index);
 router.delete("/:id", itemsCtrl.delete);
 router.put("/:id", itemsCtrl.update);
 router.get("/:id", itemsCtrl.show);
