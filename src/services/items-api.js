@@ -1,14 +1,13 @@
-import tokenService from "./tokenService";
-import userService from "./userService";
+import tokenService from "../utils/tokenService";
 
 const BASE_URL = "/api/items/";
 
-export default {
-  create,
-  getAll,
-  delete: deleteOne,
-  update,
-};
+// export default {
+//   create,
+//   getAll,
+//   delete: deleteOne,
+//   update,
+// };
 
 // function create(item) {
 //   const options = {
@@ -22,11 +21,24 @@ export default {
 //   };
 //   return fetch(BASE_URL, options).then(res => res.json());
 // }
-async function getAll(user) {
-  return await fetch(BASE_URL + `/${user._id}`).then((res) => res.json());
+
+export function getAll() {
+  return fetch(BASE_URL).then((res) => res.json());
 }
 
-function create(item, userId) {
+// function getAll(user) {
+//   // console.log("USERID", user._id);
+//   return fetch(
+//     BASE_URL + `/${user._id}`
+// method: "POST",
+// header: {
+//   "Content-type": "application/json",
+//   Authorization: "Bearer " + tokenService.getToken()
+// },
+// ).then((res) => res.json());
+// }
+
+export function create(item, userId) {
   console.log("USER ID", userId);
   return fetch(BASE_URL, {
     method: "POST",
@@ -43,18 +55,22 @@ function create(item, userId) {
     .then((item) => console.log(`THIS ${item}`));
 }
 
-function deleteOne(id) {
-  console.log(`${BASE_URL}/${id}`);
+export function deleteOne(id) {
   return fetch(`${BASE_URL}/${id}`, {
     method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+      Authorization: "Bearer " + tokenService.getToken(),
+    },
   }).then((res) => res.json());
 }
 
-function update(item) {
+export function update(item) {
   return fetch(`${BASE_URL}/${item._id}`, {
     method: "PUT",
     headers: {
-      "content-type": "application/json",
+      "Content-type": "application/json",
+      Authorization: "Bearer " + tokenService.getToken(),
     },
     body: JSON.stringify(item),
   }).then((res) => res.json());
