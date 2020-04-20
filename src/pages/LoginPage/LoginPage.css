@@ -2,18 +2,58 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
-    border: 2px solid green;
+    height: 100vh;
 }
 
 .Login-section {
+    position: relative;
+    z-index: 1;
     flex-grow: 2;
     height: 100%;
-    border: 2px solid red;
+    color: white;
+    background-color: rgb(27, 27, 27);
 }
 
 .Signup-section {
+    position: relative;
+    z-index: 2;
     flex-grow: 2;
     height: 100%;
-    border: 2px solid blue;
+}
+
+.form-wrapper {
+    width: 500px;
+    margin: 10% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    align-content: flex-start;
+}
+
+.overlay {
+    position: absolute;
+    z-index: 3;
+}
+
+span.half {
+    color: white;
+}
+
+.input-header {
+    margin-top: 1rem;
+    text-align: center;
+    align-self: flex-start;
+}
+
+.input-header.login {
+    color: white;
+}
+
+.per-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.login.buttons {
+    margin: 2rem;
 }

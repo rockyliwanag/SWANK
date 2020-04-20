@@ -43,41 +43,52 @@ class LoginPage extends Component {
       <div className="Login-container">
         <div className="Login-section">
           <h2>LOGIN</h2>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <label>USERNAME:</label>
-              <div>
-                <input
-                  type="username"
-                  className="form-control"
-                  placeholder="Username"
-                  value={this.state.username}
-                  name="username"
-                  onChange={this.handleChange}
-                />
+          <div className="form-wrapper">
+            <form onSubmit={this.handleSubmit}>
+              <div className="per-input">
+                <label className="input-header login">USERNAME:</label>
+                <div>
+                  <input
+                    type="username"
+                    className="form-control"
+                    placeholder="Username"
+                    value={this.state.username}
+                    name="username"
+                    onChange={this.handleChange}
+                  />
+                </div>
               </div>
-            </div>
-            <div>
-              <label>PASSWORD:</label>
-              <div>
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Password"
-                  value={this.state.pw}
-                  name="pw"
-                  onChange={this.handleChange}
-                />
+              <div className="per-input">
+                <label className="input-header login">PASSWORD:</label>
+                <div>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Password"
+                    value={this.state.pw}
+                    name="pw"
+                    onChange={this.handleChange}
+                  />
+                </div>
               </div>
-            </div>
-            <div>
               <div>
-                <button>LOGIN</button>&nbsp;&nbsp;&nbsp;
-                <Link to="/">CANCEL</Link>
+                <div className="login buttons">
+                  <button className="btn btn-info">LOGIN</button>
+                  &nbsp;&nbsp;&nbsp;
+                  <Link className="btn btn-danger" to="/">
+                    CANCEL
+                  </Link>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
+        <div className="overlay">
+          <h1>
+            <span className="half">-O</span>R-
+          </h1>
+        </div>
+
         <div className="Signup-section">
           <SignupForm {...this.props} updateMessage={this.updateMessage} />
           <p>{this.state.message}</p>

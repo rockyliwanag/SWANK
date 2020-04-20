@@ -35,7 +35,7 @@ function ItemList(props, handleDeleteItem) {
             DETAILS
           </Link>
         </div>
-        <div class="btn-group" role="group">
+        <div className="btn-group" role="group">
           <Link
             className="btn btn-default btn-info"
             to={{
@@ -46,7 +46,7 @@ function ItemList(props, handleDeleteItem) {
             EDIT
           </Link>
         </div>
-        <div class="btn-group" role="group">
+        <div className="btn-group" role="group">
           <button
             className="btn btn-default btn-danger"
             onClick={() => props.handleDeleteItem(props.item._id)}
