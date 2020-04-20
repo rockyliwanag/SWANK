@@ -27,6 +27,9 @@ Item Detail
 
 **MERN STACK**
 
+1. HTML5
+1. CSS
+1. Bootstrap
 1. MongoDB/Mongoose
 1. Express
 1. React
