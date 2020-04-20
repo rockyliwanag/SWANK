@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import userService from "../../utils/userService";
-import itemService from "../../utils/itemService";
+import * as itemsAPI from "../../services/items-api";
 // import tokenService from "../../utils/tokenService";
 import "./App.css";
 
@@ -26,6 +26,14 @@ class App extends Component {
     };
   }
 
+  /*------ Lifecycle Methods ------*/
+
+  async componentDidMount() {
+    const items = await itemsAPI.getAll(this.state.user);
+    console.log("ITEMS!", items);
+    this.setState({ items });
+  }
+
   /*------ Handlers ------*/
   handleSignupOrLogin = () => {
     this.setState({
@@ -41,25 +49,25 @@ class App extends Component {
   };
 
   handleAddItem = async (newItemData) => {
-    const dummyItem = {
-      name: newItemData.name,
-      value: newItemData.value,
-      itemType: newItemData.itemType,
-      description: newItemData.description,
-    };
-    const userId = this.state.user._id;
-    const newItem = await itemService.create(newItemData, userId);
+    // const dummyItem = {
+    //   name: newItemData.name,
+    //   value: newItemData.value,
+    //   itemType: newItemData.itemType,
+    //   description: newItemData.description,
+    // };
+    // const userId = this.state.user._id;
+    const newItem = await itemsAPI.create(newItemData /*userId*/);
     console.log(`NEW ITEM: ${newItemData}`);
     this.setState(
       (state) => ({
-        items: [...state.items, dummyItem],
+        items: [...state.items, newItem],
       }),
       () => this.props.history.push("/inventory")
     );
   };
 
   handleUpdateItem = async (updatedItemData) => {
-    const updatedItem = await itemService.update(updatedItemData);
+    const updatedItem = await itemsAPI.update(updatedItemData);
     const newItemsArray = this.state.items.map((i) =>
       i._id === updatedItem._id ? updatedItem : i
     );
@@ -72,7 +80,7 @@ class App extends Component {
   };
 
   handleDeleteItem = async (id) => {
-    await itemService.delete(id);
+    await itemsAPI.deleteOne(id);
     this.setState(
       (state) => ({
         items: state.items.filter((i) => i._id !== id),
@@ -80,22 +88,6 @@ class App extends Component {
       () => this.props.history.push("/inventory")
     );
   };
-
-  /*------ Lifecycle Methods ------*/
-
-  async componentDidMount() {
-    const items = await itemService.getAll(this.state.user);
-    console.log("ITEMS!", items);
-    // const items = await res.json();
-    await this.setState(
-      {
-        items: items,
-      },
-      function () {
-        console.log("DONE!");
-      }
-    );
-  }
 
   render() {
     return (
@@ -123,6 +115,7 @@ class App extends Component {
             render={({ history }) => (
               <InventoryPage
                 history={history}
+                user={this.state.user}
                 items={this.state.items}
                 handleDeleteItem={this.handleDeleteItem}
               />

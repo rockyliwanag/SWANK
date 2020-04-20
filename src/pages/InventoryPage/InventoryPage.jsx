@@ -13,7 +13,8 @@ function InventoryPage(props) {
           <ItemList
             item={item}
             handleDeleteItem={props.handleDeleteItem}
-            // key={item.name}
+            key={item._id}
+            user={props.user}
           />
         ))}
       </div>
