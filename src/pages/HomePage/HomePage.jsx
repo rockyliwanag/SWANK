@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import WelcomeCard from "../../components/WelcomeCard/WelcomeCard";
 
-class HomePage extends Component {
-  render() {
-    return (
-      <>
-        <h1>THE SWANKIEST</h1>
-      </>
-    );
-  }
+function HomePage() {
+  return (
+    <>
+      {/* <h1>THE SWANKIEST</h1> */}
+      <div>
+        <WelcomeCard />
+      </div>
+    </>
+  );
 }
 
 export default HomePage;
