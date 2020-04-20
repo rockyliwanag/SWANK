@@ -22,6 +22,8 @@ function ItemCard({ item }) {
             <dl>
               <dt>Value</dt>
               <dd>${item.value}.00</dd>
+              <dt>Type</dt>
+              <dd>{item.itemType}</dd>
               <dt>Description</dt>
               <dd>{item.description}</dd>
             </dl>
