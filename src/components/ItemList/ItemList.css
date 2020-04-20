@@ -1,4 +1,14 @@
 .ItemListPanel {
-    display: flex;
-    justify-content: space-around;
+    /* display: flex; */
+    margin: 1rem 0;
+    justify-content: center;
+}
+
+.itemWrapper {
+    width: 350px;
+    justify-self: center;
+}
+
+.itemDetails {
+    border: 1px solid black;
 }
