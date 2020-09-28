@@ -55,8 +55,8 @@ class App extends Component {
     //   itemType: newItemData.itemType,
     //   description: newItemData.description,
     // };
-    // const userId = this.state.user._id;
-    const newItem = await itemsAPI.create(newItemData /*userId*/);
+    const userId = this.state.user._id;
+    const newItem = await itemsAPI.create(newItemData, userId);
     console.log(`NEW ITEM: ${newItemData}`);
     this.setState(
       (state) => ({

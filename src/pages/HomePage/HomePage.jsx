@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import WelcomeCard from "../../components/WelcomeCard/WelcomeCard";
 
 function HomePage() {

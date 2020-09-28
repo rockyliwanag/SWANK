@@ -9,7 +9,7 @@ function ItemList(props, handleDeleteItem) {
         <div>
           <img
             src={
-              props.item.cover
+              props.item
                 ? props.item.cover
                 : require("../../images/placeholder.jpg")
             }

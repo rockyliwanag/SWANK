@@ -9,24 +9,24 @@ module.exports = {
   show,
 };
 
-async function create(req, res) {
-  req.body.userId = req.user._id;
-  const item = await Item.create(req.body);
-  res.status(201).json(item);
-}
-
 // async function create(req, res) {
-//     const item = await Item.create(req.body.item);
-//     console.log(req.body);
-//     User.findById(req.body.id, (err, user) => {
-//         console.log('USER IS', user);
-//         user.items.push(item);
-//         user.save((err, user) => {
-//             res.status(201).json(user);
-//         });
-//     });
+//   req.body.userId = req.user._id;
+//   const item = await Item.create(req.body);
 //   res.status(201).json(item);
 // }
+
+async function create(req, res) {
+    const item = await Item.create(req.body.item);
+    console.log('BODY IS', req.body);
+    User.findById(req.body.id, (err, user) => {
+        console.log('USER IS', user);
+        user.items.push(item);
+        user.save((err, user) => {
+            res.status(201).json(user);
+        });
+    });
+  res.status(201).json(item);
+}
 
 async function show(req, res) {
   const item = await Item.findById(req.params.id);

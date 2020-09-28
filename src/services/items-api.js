@@ -22,21 +22,27 @@ const BASE_URL = "/api/items/";
 //   return fetch(BASE_URL, options).then(res => res.json());
 // }
 
-export function getAll() {
-  return fetch(BASE_URL).then((res) => res.json());
-}
+// export function getAll() {
+//   return fetch(BASE_URL).then((res) => res.json());
+// }
 
 // function getAll(user) {
 //   // console.log("USERID", user._id);
 //   return fetch(
-//     BASE_URL + `/${user._id}`
+//     BASE_URL + `/${user._id}`{
 // method: "POST",
 // header: {
 //   "Content-type": "application/json",
-//   Authorization: "Bearer " + tokenService.getToken()
+//   Authorization: "Bearer " + tokenService.getToken(),
 // },
-// ).then((res) => res.json());
+// }).then((res) => res.json());
 // }
+
+export function getAll() {
+  return fetch(
+      BASE_URL 
+  ).then(res => res.json());
+}
 
 export function create(item, userId) {
   console.log("USER ID", userId);

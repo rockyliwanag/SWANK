@@ -9,11 +9,11 @@ function InventoryPage(props) {
       <h1>INVENTORY</h1>
       <Link to="/new-item">+ ADD ITEM</Link>
       <div className={styles.InventoryListGrid}>
-        {props.items.map((item) => (
+        {props.items.map((item, i) => (
           <ItemList
             item={item}
             handleDeleteItem={props.handleDeleteItem}
-            key={item._id}
+            key={i}
             user={props.user}
           />
         ))}
