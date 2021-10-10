@@ -33,10 +33,10 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  items: [{
-    type: Schema.Types.ObjectId,
-    ref: "Item",
-  }, ],
+  // items: [{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "Item",
+  // }, ],
 }, {
   timestamps: true,
 });
@@ -46,7 +46,6 @@ userSchema.plugin(uniqueValidator);
 userSchema.set("toJSON", {
   transform: function (doc, ret) {
     // remove the password property when serializing doc to JSON
-    console.log(`this is ret in models - ${ret}`);
     delete ret.password;
     return ret;
   },

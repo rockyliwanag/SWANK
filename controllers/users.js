@@ -1,10 +1,11 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const { restart } = require('nodemon');
 const SECRET = process.env.SECRET;
 
 module.exports = {
     signup,
-    login
+    login,
 };
 
 async function login(req, res) {

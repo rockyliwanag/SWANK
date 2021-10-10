@@ -7,6 +7,7 @@ function ItemList(props, handleDeleteItem) {
     <div className="itemWrapper">
       <div className="itemDetails">
         <div>
+          {console.log('Props: ', props)}
           <img
             src={
               props.item.cover

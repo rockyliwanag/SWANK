@@ -2,12 +2,13 @@ var express = require("express");
 var router = express.Router();
 var itemsCtrl = require("../../controllers/items");
 
+/* GET /api/items */
 /*---------- Public Routers ----------*/
-router.get("/", itemsCtrl.index);
+
 
 /*---------- Protected Routes ---------*/
 router.use(require('../../config/auth'));
-/* GET /api/items */
+router.get("/", checkAuth, itemsCtrl.index);
 router.post("/", checkAuth, itemsCtrl.create);
 
 router.delete("/:id", checkAuth, itemsCtrl.delete);

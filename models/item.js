@@ -4,11 +4,11 @@ var Schema = mongoose.Schema;
 var itemSchema = new Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
   },
   value: {
     type: Number,
-    required: true,
+    // required: true,
   },
   itemType: {
     type: String,
@@ -16,11 +16,12 @@ var itemSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
+    // required: true,
   },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    // required: true,
   },
   cover: String,
 }, {

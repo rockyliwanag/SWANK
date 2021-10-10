@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import userService from "../../utils/userService";
-import * as itemsAPI from "../../services/items-api";
-// import tokenService from "../../utils/tokenService";
+import  * as itemsAPI from "../../services/items-api";
 import "./App.css";
 
 /*------ Components ------*/
 import Header from "../../components/Header/Header";
 
 /*------ Pages ------*/
-// import SignupPage from '../SignupPage/SignupPage';
 import HomePage from "../HomePage/HomePage";
 import LoginPage from "../LoginPage/LoginPage";
 import InventoryPage from "../InventoryPage/InventoryPage";
@@ -26,50 +24,43 @@ class App extends Component {
     };
   }
 
-  /*------ Lifecycle Methods ------*/
-
-  async componentDidMount() {
-    const items = await itemsAPI.getAll(this.state.user);
-    console.log("ITEMS!", items);
-    this.setState({ items });
-  }
-
+  
   /*------ Handlers ------*/
   handleSignupOrLogin = () => {
     this.setState({
       user: userService.getUser(),
     });
   };
-
+  
   handleLogout = () => {
     userService.logout();
     this.setState({
       user: null,
     });
   };
-
+  
   handleAddItem = async (newItemData) => {
     // const dummyItem = {
-    //   name: newItemData.name,
-    //   value: newItemData.value,
-    //   itemType: newItemData.itemType,
-    //   description: newItemData.description,
-    // };
-    // const userId = this.state.user._id;
-    const newItem = await itemsAPI.create(newItemData /*userId*/);
-    console.log(`NEW ITEM: ${newItemData}`);
-    this.setState(
-      (state) => ({
-        items: [...state.items, newItem],
-      }),
-      () => this.props.history.push("/inventory")
-    );
+      //   name: newItemData.name,
+      //   value: newItemData.value,
+      //   itemType: newItemData.itemType,
+      //   description: newItemData.description,
+      // };
+      // const userId = this.state.user._id;
+    const newItem = await itemsAPI.create(newItemData);
+      console.log(`NEW ITEM: ${newItem}`);
+      this.setState(
+        (state) => ({
+          items: [...state.items, newItem],
+        }),
+        () => this.props.history.push("/inventory")
+      );
   };
-
+      
   handleUpdateItem = async (updatedItemData) => {
     const updatedItem = await itemsAPI.update(updatedItemData);
     const newItemsArray = this.state.items.map((i) =>
-      i._id === updatedItem._id ? updatedItem : i
+    i._id === updatedItem._id ? updatedItem : i
     );
     this.setState(
       {
@@ -78,7 +69,7 @@ class App extends Component {
       () => this.props.history.push("/inventory")
     );
   };
-
+        
   handleDeleteItem = async (id) => {
     await itemsAPI.deleteOne(id);
     this.setState(
@@ -88,6 +79,13 @@ class App extends Component {
       () => this.props.history.push("/inventory")
     );
   };
+          
+  /*------ Lifecycle Methods ------*/
+
+  async componentDidMount() {
+    const items = await itemsAPI.getAll();
+    this.setState({items})
+  }
 
   render() {
     return (
@@ -107,7 +105,7 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={({ history }) => <HomePage history={history} />}
+            render={({ history }) => <HomePage history={history} handleLogout={this.handleLogout} />}
           />
           <Route
             exact

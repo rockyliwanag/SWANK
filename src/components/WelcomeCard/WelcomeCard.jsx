@@ -15,7 +15,7 @@ function WelcomeCard() {
           the bragging rights as the top ranked <b>SWANKER!</b>
         </p>
         <p>
-          <a class="btn btn-primary btn-lg" href="/inventory" role="button">
+          <a className="btn btn-primary btn-lg" href="/inventory" role="button">
             GET STARTED
           </a>
         </p>

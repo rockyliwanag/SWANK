@@ -6,6 +6,7 @@ export default {
   getUser,
   logout,
   login,
+  // userItems
 };
 
 function logout() {
@@ -15,6 +16,18 @@ function logout() {
 function getUser() {
   return tokenService.getUserFromToken();
 }
+
+// export function userItems(x){
+//   console.log("FETCH: ", x)
+//   return fetch (BASE_URL, {
+//       method: 'GET',
+//       headers: {
+//         "Content-type": "application/json",
+//         Authorization: "Bearer " + tokenService.getToken(),
+//     }
+//   }).then(res => res.json(x))
+//   // .then(res => console.log("FETCH: ", id))
+// }
 
 function login(creds) {
   return fetch(BASE_URL + "login", {

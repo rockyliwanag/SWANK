@@ -1,5 +1,4 @@
 const Item = require("../models/item");
-const User = require("../models/user");
 
 module.exports = {
   create,
@@ -9,24 +8,24 @@ module.exports = {
   show,
 };
 
+// async function create(req, res) {
+//     req.body.user = req.user._id;
+//     const item = await Item.create(req.body);
+//     console.log('sum-in: ', req.body)
+//     // User.findById(req.body.userId, (err, user) => {
+//     //     console.log('USER IS', user);
+//     //     user.items.push(item);
+//     //     user.save((err, user) => {
+//     //         res.status(201).json(user);
+//     //     });
+//   res.status(201).json(item);
+// }
+
 async function create(req, res) {
-  req.body.userId = req.user._id;
+  req.body.user = req.user._id;
   const item = await Item.create(req.body);
   res.status(201).json(item);
 }
-
-// async function create(req, res) {
-//     const item = await Item.create(req.body.item);
-//     console.log(req.body);
-//     User.findById(req.body.id, (err, user) => {
-//         console.log('USER IS', user);
-//         user.items.push(item);
-//         user.save((err, user) => {
-//             res.status(201).json(user);
-//         });
-//     });
-//   res.status(201).json(item);
-// }
 
 async function show(req, res) {
   const item = await Item.findById(req.params.id);
@@ -34,14 +33,9 @@ async function show(req, res) {
 }
 
 async function index(req, res) {
-  // console.log("REQ ID", req.params.userId);
-  // await User.findById(req.params.userId)
-  //     .populate("items")
-  //     .exec(function (err, user) {
-  //         res.send(user.items);
-  //     });
-  const items = await Item.find({});
-  res.status(200).json(items);
+  console.log("INDEX", req.user)
+    const items = await Item.find({user: req.user._id})
+    res.status(200).json(items);
 }
 
 async function deleteOne(req, res) {
@@ -51,7 +45,7 @@ async function deleteOne(req, res) {
 
 async function update(req, res) {
   const updatedItem = await Item.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
+    new: true
+  })
   res.status(200).json(updatedItem);
 }
