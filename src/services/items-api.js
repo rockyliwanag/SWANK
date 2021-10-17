@@ -28,12 +28,11 @@ export function getAll() {
         Authorization: "Bearer " + tokenService.getToken(),
     }
   }
-  return fetch(BASE_URL, options)
+  return fetch(BASE_URL + 'inventory', options)
     .then(res => res.json())
 }
 
 export function create(item) {
-  console.log("USER ID", item);
   return fetch(
     BASE_URL, {
       method: "POST",

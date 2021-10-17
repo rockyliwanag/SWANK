@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./ItemList.css";
+import TempImg from '../../images/placeholder.jpg';
 
 function ItemList(props, handleDeleteItem) {
   return (
     <div className="itemWrapper">
       <div className="itemDetails">
         <div>
-          {console.log('Props: ', props)}
           <img
             src={
               props.item.cover
                 ? props.item.cover
-                : require("../../images/placeholder.jpg")
+                : TempImg
             }
             alt="Cover"
           />

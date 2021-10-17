@@ -21,6 +21,12 @@ module.exports = {
 //   res.status(201).json(item);
 // }
 
+async function index(req, res) {
+  const items = await Item.find({user: req.user._id})
+  res.status(200).json(items);
+  // console.log("INDEX", res)
+}
+
 async function create(req, res) {
   req.body.user = req.user._id;
   const item = await Item.create(req.body);
@@ -32,11 +38,6 @@ async function show(req, res) {
   res.status(200).json(item);
 }
 
-async function index(req, res) {
-  console.log("INDEX", req.user)
-    const items = await Item.find({user: req.user._id})
-    res.status(200).json(items);
-}
 
 async function deleteOne(req, res) {
   const deletedItem = await Item.findByIdAndRemove(req.params.id);

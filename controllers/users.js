@@ -54,7 +54,7 @@ function createJWT(user) {
             user
         }, // data payload
         SECRET, {
-            expiresIn: '24h'
+            expiresIn: '1m'
         }
     );
 }

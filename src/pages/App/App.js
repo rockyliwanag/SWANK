@@ -26,9 +26,10 @@ class App extends Component {
 
   
   /*------ Handlers ------*/
-  handleSignupOrLogin = () => {
+  handleSignupOrLogin = async () => {
     this.setState({
       user: userService.getUser(),
+      items: await itemsAPI.getAll(),
     });
   };
   
@@ -83,8 +84,11 @@ class App extends Component {
   /*------ Lifecycle Methods ------*/
 
   async componentDidMount() {
+    console.log("Component Mounted")
     const items = await itemsAPI.getAll();
-    this.setState({items})
+    const users = await userService.getUser();
+    this.setState({items, user: users})
+    console.log("USERS-APP: ", users, "ITEMS-APP: ", items)
   }
 
   render() {
@@ -105,7 +109,13 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={({ history }) => <HomePage history={history} handleLogout={this.handleLogout} />}
+            render={({ history }) => (
+              <HomePage 
+                history={history}
+                user={this.state.user}
+                items={this.state.items} 
+                handleLogout={this.handleLogout} />
+            )}
           />
           <Route
             exact
