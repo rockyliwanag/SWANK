@@ -6,7 +6,6 @@ import styles from "./InventoryPage.module.css";
 function InventoryPage(props) {
   return (
     <>
-    {/* {console.log("INV-PROPS: ", props)} */}
       <h1>INVENTORY</h1>
       <Link to="/new-item">+ ADD ITEM</Link>
         <div className={styles.InventoryListGrid}>

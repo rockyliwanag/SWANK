@@ -34,7 +34,6 @@ class AddItemsPage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.handleAddItem(this.state.formData);
-    console.log("ADDPAGE-PROPS: ", this.props)
   };
 
   handleChange = (e) => {
@@ -68,6 +67,9 @@ class AddItemsPage extends Component {
             ref={this.formRef}
             autoComplete="off"
             onSubmit={this.handleSubmit}
+            method="POST"
+            action='/'
+            enctype="multipart/form-data"
           >
             <div className="form-group">
               <label>NAME (required)</label>
@@ -123,7 +125,7 @@ class AddItemsPage extends Component {
                 />
               </div>
             </div>
-            <input type="file" onChange={this.fileUploaded} />
+            <input type="file" name='photos'onChange={this.fileUploaded} />
             <button
               type="submit"
               className="btn btn-default"

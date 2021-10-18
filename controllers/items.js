@@ -6,14 +6,13 @@ module.exports = {
   index,
   update,
   show,
+  photos
 };
 
 // async function create(req, res) {
 //     req.body.user = req.user._id;
 //     const item = await Item.create(req.body);
-//     console.log('sum-in: ', req.body)
 //     // User.findById(req.body.userId, (err, user) => {
-//     //     console.log('USER IS', user);
 //     //     user.items.push(item);
 //     //     user.save((err, user) => {
 //     //         res.status(201).json(user);
@@ -24,14 +23,19 @@ module.exports = {
 async function index(req, res) {
   const items = await Item.find({user: req.user._id})
   res.status(200).json(items);
-  // console.log("INDEX", res)
 }
 
 async function create(req, res) {
   req.body.user = req.user._id;
   const item = await Item.create(req.body);
+  // item.photos.push(req.file);
   res.status(201).json(item);
-  console.log("INDEX", item, "K: ", req.body)
+  console.log("INDEX", item, "K: ", req.file)
+}
+
+async function photos(req, res) {
+  await console.log("Photos: ", req.file)
+  res.status(201)
 }
 
 async function show(req, res) {

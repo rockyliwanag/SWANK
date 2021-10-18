@@ -1,6 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var itemsCtrl = require("../../controllers/items");
+const express = require("express");
+const router = express.Router();
+const itemsCtrl = require("../../controllers/items");
+
+
 
 /* GET /api/items */
 
@@ -9,7 +11,9 @@ var itemsCtrl = require("../../controllers/items");
 router.use(require('../../config/auth'));
 router.get("/inventory", checkAuth, itemsCtrl.index);
 router.post("/", checkAuth, itemsCtrl.create);
+// router.post("/profile", checkAuth, upload.single('avatar'), itemsCtrl.profile);
 
+// router.post("/photos", checkAuth, upload.array('photos', 6), itemsCtrl.photos);
 router.delete("/:id", checkAuth, itemsCtrl.delete);
 router.put("/:id", checkAuth, itemsCtrl.update);
 router.get("/:id", checkAuth, itemsCtrl.show);

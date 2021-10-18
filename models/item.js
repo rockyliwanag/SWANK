@@ -4,24 +4,24 @@ var Schema = mongoose.Schema;
 var itemSchema = new Schema({
   name: {
     type: String,
-    // required: true,
+    required: true,
   },
   value: {
     type: Number,
-    // required: true,
+    required: true,
   },
   itemType: {
     type: String,
-    // required: true,
+    required: true,
   },
   description: {
     type: String,
-    // required: true,
+    required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    // required: true,
+    required: true,
   },
   cover: String,
 }, {

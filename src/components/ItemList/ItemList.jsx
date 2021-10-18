@@ -4,7 +4,6 @@ import "./ItemList.css";
 import TempImg from '../../images/placeholder.jpg';
 
 function ItemList(props, handleDeleteItem) {
-  console.log("ITEMLIST-PROPS: ", props)
   return (
     <div className="itemWrapper">
       <div className="itemDetails">

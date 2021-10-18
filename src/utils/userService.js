@@ -6,7 +6,6 @@ export default {
   getUser,
   logout,
   login,
-  // userItems
 };
 
 function logout() {
@@ -16,18 +15,6 @@ function logout() {
 function getUser() {
   return tokenService.getUserFromToken();
 }
-
-// export function userItems(x){
-//   console.log("FETCH: ", x)
-//   return fetch (BASE_URL, {
-//       method: 'GET',
-//       headers: {
-//         "Content-type": "application/json",
-//         Authorization: "Bearer " + tokenService.getToken(),
-//     }
-//   }).then(res => res.json(x))
-//   // .then(res => console.log("FETCH: ", id))
-// }
 
 function login(creds) {
   return fetch(BASE_URL + "login", {
@@ -47,7 +34,6 @@ function login(creds) {
 }
 
 function signup(user) {
-  console.log(`this is user pass to sign up = ${user}`);
   return fetch(BASE_URL + "signup", {
       method: "POST",
       headers: new Headers({
@@ -56,7 +42,6 @@ function signup(user) {
       body: JSON.stringify(user),
     })
     .then((res) => {
-      console.log(`this is res in signup = ${res}`)
       if (res.ok) return res.json();
       // Probably a duplicate email
       throw new Error("Email already taken!");

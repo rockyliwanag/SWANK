@@ -41,13 +41,6 @@ class App extends Component {
   };
   
   handleAddItem = async (newItemData) => {
-    // const dummyItem = {
-      //   name: newItemData.name,
-      //   value: newItemData.value,
-      //   itemType: newItemData.itemType,
-      //   description: newItemData.description,
-      // };
-      // const userId = this.state.user._id;
     const newItem = await itemsAPI.create(newItemData);
     this.setState(state => ({
         items: [...state.items, newItem]
@@ -80,11 +73,9 @@ class App extends Component {
   /*------ Lifecycle Methods ------*/
 
   async componentDidMount() {
-    console.log("Component Mounted")
     const items = await itemsAPI.getAll();
     const users = await userService.getUser();
     this.setState({items, user: users})
-    console.log("USERS-APP: ", users, "ITEMS-APP: ", items)
   }
 
   render() {
@@ -128,7 +119,13 @@ class App extends Component {
           <Route
             exact
             path="/new-item"
-            render={({ history }) => <AddItemsPage history={history} handleAddItem={this.handleAddItem} />}
+            render={({ history }) => (
+              <AddItemsPage 
+                history={history} 
+                user={this.state.user} 
+                handleAddItem={this.handleAddItem} 
+              />
+            )}
           />
           <Route
             exact
@@ -136,6 +133,7 @@ class App extends Component {
             render={({ location }) => (
               <EditItemPage
                 location={location}
+                item={this.state.items}
                 handleUpdateItem={this.handleUpdateItem}
               />
             )}

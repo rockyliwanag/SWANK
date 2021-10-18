@@ -1,26 +1,6 @@
 import tokenService from "../utils/tokenService";
 const BASE_URL = "/api/items/";
 
-// export default {
-//   create,
-//   getAll,
-//   delete: deleteOne,
-//   update,
-// };
-
-// function create(item) {
-//   const options = {
-//     method: 'POST',
-//     headers: {
-//       'Content-type': 'application/json',
-//       // Add this header - don't forget the space after Bearer
-//       'Authorization': 'Bearer ' + tokenService.getToken()
-//     },
-//     body: JSON.stringify(item)
-//   };
-//   return fetch(BASE_URL, options).then(res => res.json());
-// }
-
 export function getAll() {
   const options = {
     method: 'GET',
