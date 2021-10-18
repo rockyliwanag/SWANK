@@ -49,13 +49,9 @@ class App extends Component {
       // };
       // const userId = this.state.user._id;
     const newItem = await itemsAPI.create(newItemData);
-      console.log(`NEW ITEM: ${newItem}`);
-      this.setState(
-        (state) => ({
-          items: [...state.items, newItem],
-        }),
-        () => this.props.history.push("/inventory")
-      );
+    this.setState(state => ({
+        items: [...state.items, newItem]
+      }), () => this.props.history.push("/inventory"));
   };
       
   handleUpdateItem = async (updatedItemData) => {
@@ -132,7 +128,7 @@ class App extends Component {
           <Route
             exact
             path="/new-item"
-            render={() => <AddItemsPage handleAddItem={this.handleAddItem} />}
+            render={({ history }) => <AddItemsPage history={history} handleAddItem={this.handleAddItem} />}
           />
           <Route
             exact

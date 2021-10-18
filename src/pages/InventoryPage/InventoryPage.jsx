@@ -6,7 +6,7 @@ import styles from "./InventoryPage.module.css";
 function InventoryPage(props) {
   return (
     <>
-    {console.log("INV-PROPS: ", props)}
+    {/* {console.log("INV-PROPS: ", props)} */}
       <h1>INVENTORY</h1>
       <Link to="/new-item">+ ADD ITEM</Link>
         <div className={styles.InventoryListGrid}>
@@ -15,7 +15,7 @@ function InventoryPage(props) {
             key={idx}
             item={item}
             handleDeleteItem={props.handleDeleteItem}
-            // user={props.user}
+            user={props.user}
             />
           ))}
       </div>

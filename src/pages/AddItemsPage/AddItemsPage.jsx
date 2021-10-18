@@ -34,6 +34,7 @@ class AddItemsPage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.handleAddItem(this.state.formData);
+    console.log("ADDPAGE-PROPS: ", this.props)
   };
 
   handleChange = (e) => {

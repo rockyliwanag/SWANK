@@ -31,6 +31,7 @@ async function create(req, res) {
   req.body.user = req.user._id;
   const item = await Item.create(req.body);
   res.status(201).json(item);
+  console.log("INDEX", item, "K: ", req.body)
 }
 
 async function show(req, res) {

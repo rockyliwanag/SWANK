@@ -33,8 +33,7 @@ export function getAll() {
 }
 
 export function create(item) {
-  return fetch(
-    BASE_URL, {
+  const options = {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -42,9 +41,8 @@ export function create(item) {
       },
       body: JSON.stringify(item),
     }
-  )
+  return fetch( BASE_URL, options )
     .then((res) => res.json())
-    .then((item) => console.log(`THIS ${item}`));
 }
 
 export function deleteOne(id) {

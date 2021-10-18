@@ -5,7 +5,7 @@ function HomePage(props) {
   return (
     <>
       {/* <h1>THE SWANKIEST</h1> */}
-      {console.log("HOME-PROPS",props)}
+      {/* {console.log("HOME-PROPS",props)} */}
       <div>
         <WelcomeCard />
       </div>
